@@ -29,6 +29,7 @@ has 'extra_feeds' => (
 use constant PATH_INDEX_PREFIX   => qr{  \A (.*) / index    [.](\w+) \z}sx;
 use constant PATH_GENERIC_PREFIX => qr{  \A (.*) / ([^/.]+) [.](\w+) \z}sx;
 
+# This separation is to help Coverage tools not lie to me that I did a perfect job
 around pages => \&_around_pages;
 
 sub _around_pages {
