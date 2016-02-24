@@ -170,7 +170,7 @@ stop_words = tunable
 
 [ErrorHandling::RequireCheckingReturnValueOfEval]
 
-[ErrorHandling::RequireUseOfExceptions]
+[-ErrorHandling::RequireUseOfExceptions]
 
 [InputOutput::ProhibitBacktickOperators]
 
