@@ -26,8 +26,8 @@ has 'extra_feeds' => (
 
 
 
-use constant PATH_INDEX_PREFIX   => qr{  \A(.*)  / index    [.](\w+) \z}sx;
-use constant PATH_GENERIC_PREFIX => qr{  \A(.*)  / ([^/.]+) [.](\w+) \z}sx;
+use constant PATH_INDEX_PREFIX   => qr{  \A (.*) / index    [.](\w+) \z}sx;
+use constant PATH_GENERIC_PREFIX => qr{  \A (.*) / ([^/.]+) [.](\w+) \z}sx;
 
 around pages => sub {
   my ( $orig, $self, @rest ) = @_;
