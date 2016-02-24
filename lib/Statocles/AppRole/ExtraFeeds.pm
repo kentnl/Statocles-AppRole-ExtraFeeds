@@ -20,48 +20,6 @@ has 'extra_feeds' => (
   default => sub { {} },
 );
 
-sub _generate_feed {
-  my ( $self, %iargs ) = @_;
-  my %args;
-  for my $required (qw( index path template index_title text )) {
-    die "_generate_feed required param $required" unless exists $iargs{$required};
-    $args{$required} = delete $iargs{$required};
-  }
-  die "_generate_feed got bad arg '$_'" for keys %iargs;
-  my $feed = Statocles::Page::List->new(
-    app      => $self,
-    pages    => $args{'index'}->pages,
-    path     => $args{'path'},
-    template => $self->template( $args{'template'} ),
-    links    => {
-      alternate => [
-        $self->link(
-          href  => $args{'index'}->path,
-          title => $args{'index_title'},
-          type  => $args{'index'}->type,
-        ),
-      ]
-    }
-  );
-  my $link_to_feed = $self->link(
-    text => $args{text},
-    href => $feed->path->stringify,
-    type => $feed->type,
-  );
-  return ( $feed, $link_to_feed );
-}
-
-sub _derive_feed_path {
-  my ( $self, $path, $feed_path ) = @_;
-  if ( $path =~ /\A(.*)\/index\.(\w+)\z/ ) {
-    return "$1/$feed_path";
-  }
-  if ( $path =~ qr{\A(.*)/([^/.]+)\.(\w+)\z} ) {
-    return "$1/$2.$feed_path";
-  }
-  die "Don't know how to derive feed path from $path to $feed_path";
-}
-
 around pages => sub {
   my ( $orig, $self, @rest ) = @_;
   my (@pages) = $self->$orig(@rest);
@@ -80,12 +38,25 @@ around pages => sub {
     next if not @existing_feeds;
 
     for my $feed_id ( sort keys %{ $self->extra_feeds } ) {
-      my $feed = $self->extra_feeds->{$feed_id};
+      my $feed           = $self->extra_feeds->{$feed_id};
+      my $reference_path = $existing_feeds[0]->href;
+      my $feed_suffix    = $feed->{name} || $feed_id;
+      my $feed_path;
+
+      if ( $reference_path =~ /\A(.*)\/index\.(\w+)\z/ ) {
+        $feed_path = "$1/$feed_suffix";
+      }
+      elsif ( $reference_path =~ qr{\A(.*)/([^/.]+)\.(\w+)\z} ) {
+        $feed_path = "$1/$2.$feed_suffix";
+      }
+      else {
+        die "Don't know how to derive feed path from $reference_path for $feed_suffix";
+      }
 
       my $feed_page = Statocles::Page::List->new(
         app      => $self,
         pages    => $page->pages,
-        path     => $self->_derive_feed_path( $existing_feeds[0]->href, $feed->{name} || $feed_id ),
+        path     => $feed_path,
         template => $self->template( $feed->{template} || $feed->{name} || $feed_id ),
         links    => {
           alternate => [
@@ -110,7 +81,7 @@ around pages => sub {
 
 };
 
-  1;
+1;
 
 =head1 DESCRIPTION
 
