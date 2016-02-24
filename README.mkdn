@@ -1,0 +1,120 @@
+# NAME
+
+Statocles::AppRole::ExtraFeeds - Generate additional feed sets for apps
+
+# VERSION
+
+version 0.001000
+
+# EXPERIMENTAL
+
+This module is very new and it comes with the following present caveats:
+
+- Usage as stated in description does not yet work
+
+    You'll need to locally patch `Beam::Wire` as per [https://github.com/preaction/Beam-Wire/pull/59](https://github.com/preaction/Beam-Wire/pull/59)
+    in order to get roles applying with attributes respected.
+
+- Application outside `Statocles::App::Blog` untested.
+
+    Feedback welcome though, and it might work by magic!
+
+- Implementation details a bit sketchy
+
+    The code works. I kinda feel like it shouldn't, and its like I've performed some magic
+    trick and the gods have smiled on me for a moment.
+
+- You're on your own with templates
+
+    This at present is a glorified lump of glue on top of existing `Statocles` behaviour.
+
+    As such, if you want this to work, you'll probably want to copy some templates and modify them.
+
+    This module does nothing for you in terms of the actual formatting, it just pumps the right
+    glue so that the same code that generates the existing feeds will be invoked a few more times
+    but with the filenames and templates you chose ( instead of the ones provided by default by the app )
+
+    Basically, you're going to want to copy `blog/index.rss.ep` to `blog/fulltext.rss.ep` and tweak
+    it a bit, or something.
+
+# DESCRIPTION
+
+This module is a role that can be applied to any `Statocles::App` in a `Statocles`'s `Beam::Wire`
+configuration.
+
+    ...
+    blog_app:
+      class: 'Statocles::App::Blog'
+      with: 'Statocles::AppRole::ExtraFeeds'
+      args:
+        url_root: '/blog'
+        # ... more Statocles::App::Blog args
+        extra_feeds:
+          fulltext.rss:
+            text: "RSS FullText"
+
+This example creates a feed called `/blog/fulltext.rss` containing the contents of `theme/blog/fulltext.rss.ep`
+after template application, and is linked from every `index` listing.
+
+It also creates a feed called `/blog/tag/<%= tagname %>.fulltext.rss` for each tag, provisioned from the same template.
+
+# PARAMETERS
+
+## `extra_feeds`
+
+This Role provides one tunable parameter on its applied class, `extra_feeds`, which contains a
+mapping of 
+
+    id => spec
+
+### `extra_feeds` spec.
+
+    {
+      text      => required
+      name      => default( id )
+      template  => default( id )
+    }
+
+#### `text`
+
+This is the name of the feed when shown in links on both `index` and `tag index` pages.
+
+#### `template`
+
+This is the name of the template to render the feeds content into.
+
+Defaults to taking the same value as the key in the `extra_fields` hash.
+
+#### `name`
+
+This is the name of the file/file suffix that is generated.
+
+It defaults to the same value as the key in the `extra_feeds`
+hash.
+
+So:
+
+    extra_feeds:
+      fulltext.rss:
+        text: "My FullText RSS"
+
+And
+
+    extra_feeds:
+      genericlabel:
+        text: "My FullText RSS"
+        name: 'fulltext.rss'      # output name
+        template: 'fulltext.rss'  # source template
+
+Should both generate the same result.
+
+# AUTHOR
+
+Kent Fredric &lt;kentnl@cpan.org>
+
+# COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2016 by Kent Fredric &lt;kentfredric@gmail.com>.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
