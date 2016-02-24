@@ -38,19 +38,22 @@ around pages => sub {
     next if not @existing_feeds;
 
     for my $feed_id ( sort keys %{ $self->extra_feeds } ) {
-      my $feed           = $self->extra_feeds->{$feed_id};
-      my $reference_path = $existing_feeds[0]->href;
-      my $feed_suffix    = $feed->{name} || $feed_id;
+      my $feed = $self->extra_feeds->{$feed_id};
       my $feed_path;
 
-      if ( $reference_path =~ /\A(.*)\/index\.(\w+)\z/ ) {
-        $feed_path = "$1/$feed_suffix";
-      }
-      elsif ( $reference_path =~ qr{\A(.*)/([^/.]+)\.(\w+)\z} ) {
-        $feed_path = "$1/$2.$feed_suffix";
-      }
-      else {
-        die "Don't know how to derive feed path from $reference_path for $feed_suffix";
+      {
+        my $reference_path = $existing_feeds[0]->href;
+        my $feed_suffix = $feed->{name} || $feed_id;
+
+        if ( $reference_path =~ /\A(.*)\/index\.(\w+)\z/ ) {
+          $feed_path = "$1/$feed_suffix";
+        }
+        elsif ( $reference_path =~ qr{\A(.*)/([^/.]+)\.(\w+)\z} ) {
+          $feed_path = "$1/$2.$feed_suffix";
+        }
+        else {
+          die "Don't know how to derive feed path from $reference_path for $feed_suffix";
+        }
       }
 
       my $feed_page = Statocles::Page::List->new(
