@@ -10,8 +10,10 @@ our $VERSION = '0.001000';
 
 # AUTHORITY
 
-use Statocles::Base 0.070 qw(Role);    # 0.70 required for ->template
-use Statocles::Page::List;
+use Moo::Role qw( has around );
+use Carp qw( croak );
+use Statocles::App 0.070 ();    # 0.70 required for ->template
+use Statocles::Page::List ();
 use namespace::autoclean;
 
 has 'extra_feeds' => (
@@ -54,7 +56,7 @@ around pages => sub {
           $feed_path = "$1/$2.$feed_suffix";
         }
         else {
-          die "Don't know how to derive feed path from $reference_path for $feed_suffix";
+          croak "Don't know how to derive feed path from $reference_path for $feed_suffix";
         }
       }
 
