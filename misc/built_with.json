@@ -73,6 +73,7 @@
       "Term::ANSIColor" : "4.04",
       "Test::CPAN::Changes" : "0.400002",
       "Test::CPAN::Meta" : "0.25",
+      "Test::Deep" : "1.120",
       "Test::EOL" : "1.6",
       "Test::Kwalitee" : "1.22",
       "Test::More" : "1.001014",

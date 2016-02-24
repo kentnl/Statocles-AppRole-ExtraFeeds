@@ -9,6 +9,8 @@ use Term::ANSIColor ('colored');
 use Path::Tiny      ( 'path', 'tempdir' );
 use Statocles::Test ( 'build_test_site', 'test_pages' );
 
+use Test::Deep                     ();    # statocles needs this installed, but something can fubar in deps
+                                          # on travis leading to a "no Test::Deep" ... somehow. IDK
 use Beam::Wire                     ();
 use Statocles::App::Blog           ();
 use Statocles::AppRole::ExtraFeeds ();
