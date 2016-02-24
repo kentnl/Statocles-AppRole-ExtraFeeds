@@ -77,7 +77,7 @@ around pages => sub {
             alternate => [
               $self->link(
                 href  => $page->path,
-                title => ( $feed->{'index_title'} || "Feed" ),
+                title => ( $feed->{'index_title'} || $page->title || 'Web Index' ),
                 type  => $page->type,
               ),
             ]
