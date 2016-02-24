@@ -1,13 +1,11 @@
 {
-   "failures" : {
-      "Dist::Zilla::PluginBundle::Author::KENTNL::Lite" : "module was not found in INC"
-   },
    "modules" : {
       "Beam::Wire" : "1.014",
       "CPAN::Meta" : "2.150005",
       "Carp" : "1.38",
       "Data::Dump" : "1.23",
       "Dist::Zilla" : "5.043",
+      "Dist::Zilla::App::Command::bakeini" : "0.002005",
       "Dist::Zilla::Plugin::Author::KENTNL::CONTRIBUTING" : "0.001005",
       "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes" : "0.005001",
       "Dist::Zilla::Plugin::Author::KENTNL::TravisCI" : "0.001002",
