@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 
-use 5.008;
+use 5.006;
 
 use ExtUtils::MakeMaker;
 
@@ -14,14 +14,14 @@ my %WriteMakefileArgs = (
   },
   "DISTNAME" => "Statocles-AppRole-ExtraFeeds",
   "LICENSE" => "perl",
-  "MIN_PERL_VERSION" => "5.008",
+  "MIN_PERL_VERSION" => "5.006",
   "NAME" => "Statocles::AppRole::ExtraFeeds",
   "PREREQ_PM" => {
     "Carp" => 0,
     "Moo::Role" => 0,
     "Statocles::App" => "0.070",
     "Statocles::Page::List" => 0,
-    "constant" => 0,
+    "constant" => "1.03",
     "namespace::autoclean" => 0,
     "strict" => 0,
     "warnings" => 0
@@ -39,6 +39,7 @@ my %WriteMakefileArgs = (
     "Statocles::Test" => 0,
     "Term::ANSIColor" => 0,
     "Test::More" => "0.89",
+    "constant" => "1.03",
     "lib" => 0
   },
   "VERSION" => "0.001000",
@@ -65,7 +66,7 @@ my %FallbackPrereqs = (
   "Statocles::Test" => 0,
   "Term::ANSIColor" => 0,
   "Test::More" => "0.89",
-  "constant" => 0,
+  "constant" => "1.03",
   "lib" => 0,
   "namespace::autoclean" => 0,
   "strict" => 0,
