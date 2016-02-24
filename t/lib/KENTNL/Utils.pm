@@ -19,9 +19,7 @@ BEGIN { *import = \&Exporter::import }
 
 our @EXPORT = qw( symdump has_feeds );
 
-use constant {
-  map { ( sprintf '_E%x', $_ ), ( sprintf ' E<%s#%d>', __PACKAGE__, $_ ) } 1 .. 4
-};
+use constant 1.03 ( { map { ( sprintf '_E%x', $_ ), ( sprintf ' E<%s#%d>', __PACKAGE__, $_ ) } 1 .. 4 } );
 
 {
   no strict;    # namespace clean
@@ -53,7 +51,7 @@ sub has_feeds {
   my ( $desc, $page, @feeds ) = @_;
   require Test::More;
   my %has_feeds;
-  for my $link (  $page->links('feed') ) {
+  for my $link ( $page->links('feed') ) {
     $has_feeds{ $link->href }++;
   }
   for my $feed (@feeds) {
@@ -76,11 +74,11 @@ sub has_feeds {
     }
     Test::More::pass("$desc has feed $feed");
   }
-  if ( $failed ) {
+  if ($failed) {
     Test::More::diag("\n---\nExpected feeds for $desc:");
-    Test::More::diag(sprintf "- [%s]", join q[, ], sort @feeds );
+    Test::More::diag( sprintf "- [%s]", join q[, ], sort @feeds );
     Test::More::diag("Got feeds for $desc:");
-    Test::More::diag(sprintf "- [%s]", join q[, ], sort map { $_->href } $page->links('feed'));
+    Test::More::diag( sprintf "- [%s]", join q[, ], sort map { $_->href } $page->links('feed') );
     Test::More::diag("---");
   }
 }

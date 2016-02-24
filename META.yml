@@ -15,8 +15,9 @@ build_requires:
   Statocles::Test: '0'
   Term::ANSIColor: '0'
   Test::More: '0.89'
+  constant: '1.03'
   lib: '0'
-  perl: '5.008'
+  perl: '5.006'
 configure_requires:
   ExtUtils::MakeMaker: '0'
   perl: '5.006'
@@ -36,9 +37,9 @@ requires:
   Moo::Role: '0'
   Statocles::App: '0.070'
   Statocles::Page::List: '0'
-  constant: '0'
+  constant: '1.03'
   namespace::autoclean: '0'
-  perl: '5.008'
+  perl: '5.006'
   strict: '0'
   warnings: '0'
 resources:
