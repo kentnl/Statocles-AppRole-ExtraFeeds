@@ -5,7 +5,7 @@ do { my $x = {
                                         },
                         'requires' => {
                                         'ExtUtils::MakeMaker' => '0',
-                                        'perl' => '5.006'
+                                        'perl' => '5.008'
                                       }
                       },
        'develop' => {
@@ -85,6 +85,7 @@ do { my $x = {
                                       'Moo::Role' => '0',
                                       'Statocles::App' => '0.070',
                                       'Statocles::Page::List' => '0',
+                                      'constant' => '0',
                                       'namespace::autoclean' => '0',
                                       'perl' => '5.008',
                                       'strict' => '0',
@@ -111,7 +112,6 @@ do { my $x = {
                                    'Statocles::Test' => '0',
                                    'Term::ANSIColor' => '0',
                                    'Test::More' => '0.89',
-                                   'constant' => '0',
                                    'lib' => '0',
                                    'perl' => '5.008'
                                  }
