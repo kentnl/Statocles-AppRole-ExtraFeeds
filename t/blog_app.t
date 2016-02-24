@@ -117,10 +117,10 @@ my %pagemap = (
     has_feeds( $_->path, $_, () );
   },
   '/blog/tag/atag.fulltext.rss' => sub {
-     has_feeds( $_->path, $_, () );
+    has_feeds( $_->path, $_, () );
   },
-  '/blog/tag/atag.atom'         => sub {
-      has_feeds( $_->path, $_, () );
+  '/blog/tag/atag.atom' => sub {
+    has_feeds( $_->path, $_, () );
   },
 );
 for my $page ( $service->pages ) {
