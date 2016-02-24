@@ -23,8 +23,8 @@ has 'extra_feeds' => (
 );
 
 use constant 1.03 {
-  path_index_prefix   => qr{  \A(.*)  / index    [.](\w+)\z}x,
-  path_generic_prefix => qr{  \A(.*)  / ([^/.]+) [.](\w+)\z}x,
+  PATH_INDEX_PREFIX   => qr{  \A(.*)  / index    [.](\w+)\z}x,
+  PATH_GENERIC_PREFIX => qr{  \A(.*)  / ([^/.]+) [.](\w+)\z}x,
 };
 
 around pages => sub {
@@ -54,10 +54,10 @@ around pages => sub {
         my $reference_path = $existing_feeds[0]->href;
         my $feed_suffix = $feed->{name} || $feed_id;
 
-        if ( $reference_path =~ path_index_prefix ) {
+        if ( $reference_path =~ PATH_INDEX_PREFIX ) {
           $feed_path = "$1/$feed_suffix";
         }
-        elsif ( $reference_path =~ path_generic_prefix ) {
+        elsif ( $reference_path =~ PATH_GENERIC_PREFIX ) {
           $feed_path = "$1/$2.$feed_suffix";
         }
         else {
