@@ -10,7 +10,7 @@ our $VERSION = '0.001000';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
-use Moo::Role qw( has );
+use Moo::Role qw( has around );
 use Statocles::App 0.070 ();    # 0.70 required for ->template
 use Statocles::Page::List ();
 use namespace::autoclean;
@@ -165,7 +165,7 @@ It also creates a feed called C<< /blog/tag/<%= tagname %>.fulltext.rss >> for e
 
 =head2 C<extra_feeds>
 
-This Role provides one tuneable parameter on its applied class, C<extra_feeds>, which contains a
+This Role provides one tunable parameter on its applied class, C<extra_feeds>, which contains a
 mapping of
 
   id => spec
