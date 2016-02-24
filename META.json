@@ -466,6 +466,11 @@
                      },
                      {
                         "class" : "Pod::Weaver::Section::Generic",
+                        "name" : "EXPERIMENTAL",
+                        "version" : "4.012"
+                     },
+                     {
+                        "class" : "Pod::Weaver::Section::Generic",
                         "name" : "DESCRIPTION",
                         "version" : "4.012"
                      },

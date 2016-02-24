@@ -104,27 +104,6 @@ Statocles::AppRole::ExtraFeeds - Generate additional feed sets for apps
 
 version 0.001000
 
-=head1 DESCRIPTION
-
-This module is a role that can be applied to any C<Statocles::App> in a C<Statocles>'s C<Beam::Wire>
-configuration.
-
-  ...
-  blog_app:
-    class: 'Statocles::App::Blog'
-    with: 'Statocles::AppRole::ExtraFeeds'
-    args:
-      url_root: '/blog'
-      # ... more Statocles::App::Blog args
-      extra_feeds:
-        fulltext.rss:
-          text: "RSS FullText"
-
-This example creates a feed called C</blog/fulltext.rss> containing the contents of C<theme/blog/fulltext.rss.ep>
-after template application, and is linked from every C<index> listing.
-
-It also creates a feed called C<< /blog/tag/<%= tagname %>.fulltext.rss >> for each tag, provisioned from the same template.
-
 =head1 EXPERIMENTAL
 
 This module is very new and it comes with the following present caveats:
@@ -159,6 +138,27 @@ Basically, you're going to want to copy C<blog/index.rss.ep> to C<blog/fulltext.
 it a bit, or something.
 
 =back
+
+=head1 DESCRIPTION
+
+This module is a role that can be applied to any C<Statocles::App> in a C<Statocles>'s C<Beam::Wire>
+configuration.
+
+  ...
+  blog_app:
+    class: 'Statocles::App::Blog'
+    with: 'Statocles::AppRole::ExtraFeeds'
+    args:
+      url_root: '/blog'
+      # ... more Statocles::App::Blog args
+      extra_feeds:
+        fulltext.rss:
+          text: "RSS FullText"
+
+This example creates a feed called C</blog/fulltext.rss> containing the contents of C<theme/blog/fulltext.rss.ep>
+after template application, and is linked from every C<index> listing.
+
+It also creates a feed called C<< /blog/tag/<%= tagname %>.fulltext.rss >> for each tag, provisioned from the same template.
 
 =head1 PARAMETERS
 
