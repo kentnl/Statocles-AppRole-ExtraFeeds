@@ -22,6 +22,13 @@ has 'extra_feeds' => (
   default => sub { {} },
 );
 
+=for Pod::Coverage PATH_INDEX_PREFIX PATH_GENERIC_PREFIX
+
+=cut
+
+use constant PATH_INDEX_PREFIX   => qr{  \A (.*) / index    [.](\w+) \z}sx;
+use constant PATH_GENERIC_PREFIX => qr{  \A (.*) / ([^/.]+) [.](\w+) \z}sx;
+
 around pages => sub {
   my ( $orig, $self, @rest ) = @_;
   my (@pages) = $self->$orig(@rest);
@@ -49,10 +56,10 @@ around pages => sub {
         my $reference_path = $existing_feeds[0]->href;
         my $feed_suffix = $feed->{name} || $feed_id;
 
-        if ( $reference_path =~ /\A(.*)\/index\.(\w+)\z/ ) {
+        if ( $reference_path =~ PATH_INDEX_PREFIX ) {
           $feed_path = "$1/$feed_suffix";
         }
-        elsif ( $reference_path =~ qr{\A(.*)/([^/.]+)\.(\w+)\z} ) {
+        elsif ( $reference_path =~ PATH_GENERIC_PREFIX ) {
           $feed_path = "$1/$2.$feed_suffix";
         }
         else {

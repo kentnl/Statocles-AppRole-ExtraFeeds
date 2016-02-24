@@ -21,6 +21,7 @@ my %WriteMakefileArgs = (
     "Moo::Role" => 0,
     "Statocles::App" => "0.070",
     "Statocles::Page::List" => 0,
+    "constant" => 0,
     "namespace::autoclean" => 0,
     "strict" => 0,
     "warnings" => 0
@@ -38,7 +39,6 @@ my %WriteMakefileArgs = (
     "Statocles::Test" => 0,
     "Term::ANSIColor" => 0,
     "Test::More" => "0.89",
-    "constant" => 0,
     "lib" => 0
   },
   "VERSION" => "0.001000",
