@@ -26,6 +26,8 @@ around pages => sub {
 
   return @pages unless @pages;
 
+  my %feed_cache;
+
   my @out_pages;
 
   while (@pages) {
@@ -56,31 +58,33 @@ around pages => sub {
         }
       }
 
-      my $feed_page = Statocles::Page::List->new(
-        app      => $self,
-        pages    => $page->pages,
-        path     => $feed_path,
-        template => $self->template( $feed->{template} || $feed->{name} || $feed_id ),
-        links    => {
-          alternate => [
-            $self->link(
-              href  => $page->path,
-              title => ( $feed->{'index_title'} || "Feed" ),
-              type  => $page->type,
-            ),
-          ]
-        }
-      );
-      my $feed_link = $self->link(
-        text => $feed->{text},
-        href => $feed_page->path->stringify,
-        type => $feed_page->type,
-      );
-      $page->links( feed => $feed_link );
-      push @out_pages, $feed_page;
+      if ( not exists $feed_cache{$feed_path} ) {
+        my $feed_page = $feed_cache{$feed_path}{feed_page} = Statocles::Page::List->new(
+          app      => $self,
+          pages    => $page->pages,
+          path     => $feed_path,
+          template => $self->template( $feed->{template} || $feed->{name} || $feed_id ),
+          links    => {
+            alternate => [
+              $self->link(
+                href  => $page->path,
+                title => ( $feed->{'index_title'} || "Feed" ),
+                type  => $page->type,
+              ),
+            ]
+          }
+        );
+
+        $feed_cache{$feed_path}{feed_link} = $self->link(
+          text => $feed->{text},
+          href => $feed_page->path->stringify,
+          type => $feed_page->type,
+        );
+      }
+      $page->links( feed => $feed_cache{$feed_path}{feed_link} );
     }
   }
-  return @out_pages;
+  return @out_pages, map { $feed_cache{$_}{feed_page} } sort keys %feed_cache;
 
 };
 
