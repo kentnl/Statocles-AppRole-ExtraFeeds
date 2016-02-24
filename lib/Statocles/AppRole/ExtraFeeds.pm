@@ -29,7 +29,10 @@ has 'extra_feeds' => (
 use constant PATH_INDEX_PREFIX   => qr{  \A (.*) / index    [.](\w+) \z}sx;
 use constant PATH_GENERIC_PREFIX => qr{  \A (.*) / ([^/.]+) [.](\w+) \z}sx;
 
-around pages => sub {
+# This separation is to help Coverage tools not lie to me that I did a perfect job
+around pages => \&_around_pages;
+
+sub _around_pages {
   my ( $orig, $self, @rest ) = @_;
   my (@pages) = $self->$orig(@rest);
 
@@ -94,8 +97,7 @@ around pages => sub {
     }
   }
   return @out_pages, map { $feed_cache{$_}{feed_page} } sort keys %feed_cache;
-
-};
+}
 
 1;
 
