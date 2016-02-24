@@ -17,6 +17,7 @@ my %WriteMakefileArgs = (
   "MIN_PERL_VERSION" => "5.008",
   "NAME" => "Statocles::AppRole::ExtraFeeds",
   "PREREQ_PM" => {
+    "Carp" => 0,
     "Moo::Role" => 0,
     "Statocles::App" => "0.070",
     "Statocles::Page::List" => 0,
@@ -26,7 +27,6 @@ my %WriteMakefileArgs = (
   },
   "TEST_REQUIRES" => {
     "Beam::Wire" => 0,
-    "Carp" => 0,
     "Data::Dump" => 0,
     "Exporter" => 0,
     "ExtUtils::MakeMaker" => 0,

@@ -96,6 +96,7 @@
       },
       "runtime" : {
          "requires" : {
+            "Carp" : "0",
             "Moo::Role" : "0",
             "Statocles::App" : "0.070",
             "Statocles::Page::List" : "0",
@@ -114,7 +115,6 @@
          },
          "requires" : {
             "Beam::Wire" : "0",
-            "Carp" : "0",
             "Data::Dump" : "0",
             "Exporter" : "0",
             "ExtUtils::MakeMaker" : "0",

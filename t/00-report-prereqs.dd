@@ -81,6 +81,7 @@ do { my $x = {
                     },
        'runtime' => {
                       'requires' => {
+                                      'Carp' => '0',
                                       'Moo::Role' => '0',
                                       'Statocles::App' => '0.070',
                                       'Statocles::Page::List' => '0',
@@ -99,7 +100,6 @@ do { my $x = {
                                    },
                    'requires' => {
                                    'Beam::Wire' => '0',
-                                   'Carp' => '0',
                                    'Data::Dump' => '0',
                                    'Exporter' => '0',
                                    'ExtUtils::MakeMaker' => '0',
