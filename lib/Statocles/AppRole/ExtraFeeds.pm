@@ -97,8 +97,7 @@ sub _around_pages {
     }
   }
   return @out_pages, map { $feed_cache{$_}{feed_page} } sort keys %feed_cache;
-
-};
+}
 
 1;
 
