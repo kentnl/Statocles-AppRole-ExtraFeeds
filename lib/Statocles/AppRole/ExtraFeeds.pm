@@ -80,8 +80,8 @@ around pages => sub {
                 title => ( $feed->{'index_title'} || $page->title || 'Web Index' ),
                 type  => $page->type,
               ),
-            ]
-          }
+            ],
+          },
         );
 
         $feed_cache{$feed_path}{feed_link} = $self->link(
