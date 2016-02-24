@@ -12,6 +12,7 @@ META.yml
 Makefile.PL
 README
 dist.ini
+dist.ini.meta
 lib/Statocles/AppRole/ExtraFeeds.pm
 maint/perlcritic.rc.gen.pl
 misc/Changes.deps
