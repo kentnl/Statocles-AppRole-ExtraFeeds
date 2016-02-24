@@ -10,7 +10,7 @@ our $VERSION = '0.001000';
 
 # AUTHORITY
 
-use Statocles::Base 0.070 qw(Role); # 0.70 required for ->template
+use Statocles::Base 0.070 qw(Role);    # 0.70 required for ->template
 use Statocles::Page::List;
 use namespace::autoclean;
 
@@ -23,7 +23,7 @@ has 'extra_feeds' => (
 sub _generate_feed {
   my ( $self, %iargs ) = @_;
   my %args;
-  for my $required ( qw( index path template index_title text ) ) {
+  for my $required (qw( index path template index_title text )) {
     die "_generate_feed required param $required" unless exists $iargs{$required};
     $args{$required} = delete $iargs{$required};
   }
@@ -31,7 +31,7 @@ sub _generate_feed {
   my $feed = Statocles::Page::List->new(
     app      => $self,
     pages    => $args{'index'}->pages,
-    path     => $self->url_root . '/' . $args{'path'},
+    path     => $args{'path'},
     template => $self->template( $args{'template'} ),
     links    => {
       alternate => [
@@ -51,66 +51,66 @@ sub _generate_feed {
   return ( $feed, $link_to_feed );
 }
 
-around index => sub {
-  my ( $orig, $self, @arg ) = @_;
-  my (@pages) = $self->$orig(@arg);
-  return unless @pages;
-
-  my $index = $pages[0];
-
-  my ( @feed_pages, @feed_links );
-  for my $feed_id ( sort keys %{ $self->extra_feeds } ) {
-    my $feed = $self->extra_feeds->{$feed_id};
-    my ( $feed_page, $feed_link ) = $self->_generate_feed(
-      index       => $index,
-      path        => ( $feed->{name} || $feed_id ),
-      index_title => 'index',
-      template    => ( $feed->{name} || $feed_id ),
-      %{$feed}
-    );
-    push @feed_pages, $feed_page;
-    for my $page (@pages) {
-      next unless scalar $page->links('feed');
-      $page->links( 'feed' => $feed_link );
-    }
+sub _derive_feed_path {
+  my ( $self, $path, $feed_path ) = @_;
+  if ( $path =~ /\A(.*)\/index\.(\w+)\z/ ) {
+    return "$1/$feed_path";
   }
-  return ( @pages, @feed_pages );
-};
+  if ( $path =~ qr{\A(.*)/([^/.]+)\.(\w+)\z} ) {
+    return "$1/$2.$feed_path";
+  }
+  die "Don't know how to derive feed path from $path to $feed_path";
+}
 
-around tag_pages => sub {
-  my ( $orig, $self, $tagged_docs, @rest ) = @_;
-  my (@pages) = $self->$orig( $tagged_docs, @rest );
-  for my $tag ( keys %{$tagged_docs} ) {
+around pages => sub {
+  my ( $orig, $self, @rest ) = @_;
+  my (@pages) = $self->$orig(@rest);
 
-    my (@tag_pages);
-    my $epath = join '/', $self->url_root, 'tag', $self->_tag_url($tag), '';
-    for my $page (@pages) {
-      next unless $page->path =~ /^\Q$epath\E/;
-      push @tag_pages, $page;
-    }
-    next unless @tag_pages;
-    my ($index) = $tag_pages[0];    ## This seems really dodgy
-    my ( @feed_pages, @feed_links );
+  return @pages unless @pages;
+
+  my @out_pages;
+
+  while (@pages) {
+    my $page = shift @pages;
+
+    push @out_pages, $page;
+
+    my (@existing_feeds) = $page->links('feed');
+
+    next if not @existing_feeds;
+
     for my $feed_id ( sort keys %{ $self->extra_feeds } ) {
       my $feed = $self->extra_feeds->{$feed_id};
-      my ( $feed_page, $feed_link ) = $self->_generate_feed(
-        index       => $index,
-        index_title => $tag,
-        path        => ( 'tag/' . $self->_tag_url($tag) . '.' . ( $feed->{name} || $feed_id ) ),
-        template => ( $feed->{name} || $feed_id ),
-        %{$feed}
+
+      my $feed_page = Statocles::Page::List->new(
+        app      => $self,
+        pages    => $page->pages,
+        path     => $self->_derive_feed_path( $existing_feeds[0]->href, $feed->{name} || $feed_id ),
+        template => $self->template( $feed->{template} || $feed->{name} || $feed_id ),
+        links    => {
+          alternate => [
+            $self->link(
+              href  => $page->path,
+              title => ( $feed->{'index_title'} || "Feed" ),
+              type  => $page->type,
+            ),
+          ]
+        }
       );
-      push @feed_pages, $feed_page;
-      for my $page (@tag_pages) {
-        #  $page->links( feed => $feed_link );
-      }
+      my $feed_link = $self->link(
+        text => $feed->{text},
+        href => $feed_page->path->stringify,
+        type => $feed_page->type,
+      );
+      $page->links( feed => $feed_link );
+      push @out_pages, $feed_page;
     }
-    push @pages, @feed_pages;
   }
-  return @pages;
+  return @out_pages;
+
 };
 
-1;
+  1;
 
 =head1 DESCRIPTION
 
