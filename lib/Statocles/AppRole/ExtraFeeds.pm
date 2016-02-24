@@ -22,6 +22,10 @@ has 'extra_feeds' => (
   default => sub { {} },
 );
 
+
+
+
+
 use constant 1.03 {
   PATH_INDEX_PREFIX   => qr{  \A(.*)  / index    [.](\w+)\z}x,
   PATH_GENERIC_PREFIX => qr{  \A(.*)  / ([^/.]+) [.](\w+)\z}x,
@@ -166,6 +170,8 @@ This example creates a feed called C</blog/fulltext.rss> containing the contents
 after template application, and is linked from every C<index> listing.
 
 It also creates a feed called C<< /blog/tag/<%= tagname %>.fulltext.rss >> for each tag, provisioned from the same template.
+
+=for Pod::Coverage PATH_INDEX_PREFIX PATH_GENERIC_PREFIX
 
 =head1 PARAMETERS
 
