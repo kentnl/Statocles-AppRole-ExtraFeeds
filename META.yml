@@ -32,7 +32,7 @@ name: Statocles-AppRole-ExtraFeeds
 provides:
   Statocles::AppRole::ExtraFeeds:
     file: lib/Statocles/AppRole/ExtraFeeds.pm
-    version: '0.001000'
+    version: '0.001001'
 requires:
   Carp: '0'
   Moo::Role: '0'
@@ -47,4 +47,4 @@ resources:
   bugtracker: https://github.com/kentnl/Statocles-AppRole-ExtraFeeds/issues
   homepage: https://github.com/kentnl/Statocles-AppRole-ExtraFeeds
   repository: https://github.com/kentnl/Statocles-AppRole-ExtraFeeds.git
-version: '0.001000'
+version: '0.001001'
