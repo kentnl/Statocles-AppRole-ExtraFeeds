@@ -10,8 +10,9 @@ our $VERSION = '0.001000';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
-use Statocles::Base 0.070 qw(Role);    # 0.70 required for ->template
-use Statocles::Page::List;
+use Moo::Role qw( has );
+use Statocles::App 0.070 ();    # 0.70 required for ->template
+use Statocles::Page::List ();
 use namespace::autoclean;
 
 has 'extra_feeds' => (
@@ -126,13 +127,13 @@ trick and the gods have smiled on me for a moment.
 
 =item * You're on your own with templates
 
-This at present is a glorified lump of glue on top of existing C<Statocles> behaviour.
+This at present is a glorified lump of glue on top of existing C<Statocles> behavior.
 
 As such, if you want this to work, you'll probably want to copy some templates and modify them.
 
 This module does nothing for you in terms of the actual formatting, it just pumps the right
 glue so that the same code that generates the existing feeds will be invoked a few more times
-but with the filenames and templates you chose ( instead of the ones provided by default by the app )
+but with the file names and templates you chose ( instead of the ones provided by default by the app )
 
 Basically, you're going to want to copy C<blog/index.rss.ep> to C<blog/fulltext.rss.ep> and tweak
 it a bit, or something.
@@ -164,7 +165,7 @@ It also creates a feed called C<< /blog/tag/<%= tagname %>.fulltext.rss >> for e
 
 =head2 C<extra_feeds>
 
-This Role provides one tunable parameter on its applied class, C<extra_feeds>, which contains a
+This Role provides one tuneable parameter on its applied class, C<extra_feeds>, which contains a
 mapping of
 
   id => spec

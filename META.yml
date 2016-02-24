@@ -9,7 +9,6 @@ build_requires:
   Exporter: '0'
   ExtUtils::MakeMaker: '0'
   File::Spec: '0'
-  Moo::Role: '0'
   Package::Stash: '0'
   Path::Tiny: '0'
   Scalar::Util: '0'
@@ -35,7 +34,8 @@ provides:
     file: lib/Statocles/AppRole/ExtraFeeds.pm
     version: '0.001000'
 requires:
-  Statocles::Base: '0.070'
+  Moo::Role: '0'
+  Statocles::App: '0.070'
   Statocles::Page::List: '0'
   namespace::autoclean: '0'
   perl: '5.008'
