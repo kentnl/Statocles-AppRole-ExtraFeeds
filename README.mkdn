@@ -63,7 +63,7 @@ It also creates a feed called `/blog/tag/<%= tagname %>.fulltext.rss` for each t
 ## `extra_feeds`
 
 This Role provides one tunable parameter on its applied class, `extra_feeds`, which contains a
-mapping of 
+mapping of
 
     id => spec
 

@@ -151,7 +151,7 @@ It also creates a feed called C<< /blog/tag/<%= tagname %>.fulltext.rss >> for e
 =head2 C<extra_feeds>
 
 This Role provides one tunable parameter on its applied class, C<extra_feeds>, which contains a
-mapping of 
+mapping of
 
   id => spec
 
