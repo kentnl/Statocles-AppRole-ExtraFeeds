@@ -22,7 +22,7 @@ has 'extra_feeds' => (
   default => sub { {} },
 );
 
-use constant {
+use constant 1.03 {
   path_index_prefix   => qr{  \A(.*)  / index    [.](\w+)\z}x,
   path_generic_prefix => qr{  \A(.*)  / ([^/.]+) [.](\w+)\z}x,
 };

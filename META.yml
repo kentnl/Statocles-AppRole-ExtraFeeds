@@ -19,7 +19,7 @@ build_requires:
   perl: '5.008'
 configure_requires:
   ExtUtils::MakeMaker: '0'
-  perl: '5.008'
+  perl: '5.006'
 dynamic_config: 0
 generated_by: 'Dist::Zilla version 5.043, CPAN::Meta::Converter version 2.150005'
 license: perl
@@ -36,7 +36,7 @@ requires:
   Moo::Role: '0'
   Statocles::App: '0.070'
   Statocles::Page::List: '0'
-  constant: '0'
+  constant: '1.03'
   namespace::autoclean: '0'
   perl: '5.008'
   strict: '0'
