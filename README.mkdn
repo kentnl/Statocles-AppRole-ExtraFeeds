@@ -4,7 +4,7 @@ Statocles::AppRole::ExtraFeeds - Generate additional feed sets for apps
 
 # VERSION
 
-version 0.001001
+version 0.001002
 
 # EXPERIMENTAL
 
