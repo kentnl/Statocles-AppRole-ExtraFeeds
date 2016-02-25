@@ -79,7 +79,7 @@ my %FallbackPrereqs = (
 
 # inserted by Dist::Zilla::Plugin::DynamicPrereqs 0.019
 |# Interop for "with"
-runtime_requires("Beam::Wire",1.016) if has_module("Beam::Wire","<1.016");
+|runtime_requires("Beam::Wire",1.016) if has_module("Beam::Wire","<1.016");
 
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
