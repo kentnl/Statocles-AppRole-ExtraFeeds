@@ -27,7 +27,7 @@ my %WriteMakefileArgs = (
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
-    "Beam::Wire" => 0,
+    "Beam::Wire" => "1.016",
     "Data::Dump" => 0,
     "Exporter" => 0,
     "ExtUtils::MakeMaker" => 0,
@@ -51,7 +51,7 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "Beam::Wire" => 0,
+  "Beam::Wire" => "1.016",
   "Carp" => 0,
   "Data::Dump" => 0,
   "Exporter" => 0,
