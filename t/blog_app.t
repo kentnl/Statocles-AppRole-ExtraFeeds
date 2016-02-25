@@ -9,9 +9,9 @@ use Term::ANSIColor ('colored');
 use Path::Tiny      ( 'path', 'tempdir' );
 use Statocles::Test ( 'build_test_site', 'test_pages' );
 
-use Test::Deep                     ();    # statocles needs this installed, but something can fubar in deps
-                                          # on travis leading to a "no Test::Deep" ... somehow. IDK
-use Beam::Wire                     ();
+use Test::Deep ();    # statocles needs this installed, but something can fubar in deps
+                      # on travis leading to a "no Test::Deep" ... somehow. IDK
+use Beam::Wire 1.016 ();    # :with works
 use Statocles::App::Blog           ();
 use Statocles::AppRole::ExtraFeeds ();
 
@@ -59,31 +59,20 @@ my $site = build_test_site(
   base_url => 'http://www.example.org',
 );
 
-#TODO: When Beam::Wire supports doing this, use it:
-#my $beamer  = Beam::Wire->new();
-#my $service = $beamer->create_service(
-#  blog => (
-#    'class' => 'Statocles::App::Blog',
-#    'with'  => 'Statocles::AppRole::ExtraFeeds',
-#    'args'  => {
-#      url_root    => '/blog',
-#      store       => $wd->child('blog'),
-#      site        => $site,
-#      extra_feeds => {
-#        'fulltext.rss' => { text => 'RSS FullText' },
-#      },
-#    },
-#  ),
-#);
-require Moo::Role;
-my $class = Moo::Role->create_class_with_roles( 'Statocles::App::Blog', 'Statocles::AppRole::ExtraFeeds' );
-my $service = $class->new(
-  url_root    => '/blog',
-  store       => $wd->child('blog'),
-  site        => $site,
-  extra_feeds => {
-    'fulltext.rss' => { text => 'RSS FullText' },
-  },
+my $beamer  = Beam::Wire->new();
+my $service = $beamer->create_service(
+  blog => (
+    'class' => 'Statocles::App::Blog',
+    'with'  => 'Statocles::AppRole::ExtraFeeds',
+    'args'  => {
+      url_root    => '/blog',
+      store       => $wd->child('blog'),
+      site        => $site,
+      extra_feeds => {
+        'fulltext.rss' => { text => 'RSS FullText' },
+      },
+    },
+  ),
 );
 
 ok( $service->can('extra_feeds'), "Composed service can -> extra_feeds ( composition check )" ) or do {

@@ -19,5 +19,10 @@ srcreadme         = mkdn
 ; twitter_extra_hash_tags =
 ; auto_prereqs_skip = File::Find
 
+[DynamicPrereqs]
+-delimiter = |
+-raw = |# Interop for "with"
+-raw = |runtime_requires("Beam::Wire",1.016) if has_module("Beam::Wire","<1.016");
+
 [Prereqs]
 

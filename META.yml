@@ -3,7 +3,7 @@ abstract: 'Generate additional feed sets for apps'
 author:
   - 'Kent Fredric <kentnl@cpan.org>'
 build_requires:
-  Beam::Wire: '0'
+  Beam::Wire: '1.016'
   Data::Dump: '0'
   Exporter: '0'
   ExtUtils::MakeMaker: '0'
@@ -20,9 +20,11 @@ build_requires:
   lib: '0'
   perl: '5.006'
 configure_requires:
+  CPAN::Meta::Requirements: '2.120620'
   ExtUtils::MakeMaker: '0'
+  Module::Metadata: '0'
   perl: '5.006'
-dynamic_config: 0
+dynamic_config: 1
 generated_by: 'Dist::Zilla version 5.043, CPAN::Meta::Converter version 2.150005'
 license: perl
 meta-spec:
@@ -32,7 +34,7 @@ name: Statocles-AppRole-ExtraFeeds
 provides:
   Statocles::AppRole::ExtraFeeds:
     file: lib/Statocles/AppRole/ExtraFeeds.pm
-    version: '0.001000'
+    version: '0.001001'
 requires:
   Carp: '0'
   Moo::Role: '0'
@@ -47,4 +49,4 @@ resources:
   bugtracker: https://github.com/kentnl/Statocles-AppRole-ExtraFeeds/issues
   homepage: https://github.com/kentnl/Statocles-AppRole-ExtraFeeds
   repository: https://github.com/kentnl/Statocles-AppRole-ExtraFeeds.git
-version: '0.001000'
+version: '0.001001'

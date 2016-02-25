@@ -1,1 +1,12 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
+
+0.001001
+ [Added / configure requires]
+ - CPAN::Meta::Requirements 2.120620
+ - Module::Metadata
+
+ [Added / develop requires]
+ - Dist::Zilla::Plugin::DynamicPrereqs
+
+ [Changed / test requires]
+ - Beam::Wire 0 → 1.016
