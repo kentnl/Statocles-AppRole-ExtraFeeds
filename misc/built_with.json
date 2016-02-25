@@ -1,6 +1,6 @@
 {
    "modules" : {
-      "Beam::Wire" : "1.014",
+      "Beam::Wire" : "1.016",
       "CPAN::Meta" : "2.150005",
       "Carp" : "1.38",
       "Data::Dump" : "1.23",

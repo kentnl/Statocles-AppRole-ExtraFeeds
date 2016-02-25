@@ -100,7 +100,7 @@ do { my $x = {
                                      'Test::More' => '0.99'
                                    },
                    'requires' => {
-                                   'Beam::Wire' => '0',
+                                   'Beam::Wire' => '1.016',
                                    'Data::Dump' => '0',
                                    'Exporter' => '0',
                                    'ExtUtils::MakeMaker' => '0',
