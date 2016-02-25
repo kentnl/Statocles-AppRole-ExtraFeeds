@@ -121,11 +121,6 @@ This module is very new and it comes with the following present caveats:
 
 =over 4
 
-=item * Usage as stated in description does not yet work
-
-You'll need to locally patch C<Beam::Wire> as per L<https://github.com/preaction/Beam-Wire/pull/59>
-in order to get roles applying with attributes respected.
-
 =item * Application outside C<Statocles::App::Blog> untested.
 
 Feedback welcome though, and it might work by magic!
