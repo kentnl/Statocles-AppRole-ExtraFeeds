@@ -1,6 +1,9 @@
 Release history for Statocles-AppRole-ExtraFeeds
 
-0.001001 2016-02-24T15:14:15Z 14d9f18
+0.001001 2016-02-25T00:26:51Z 4792b9a
+ [Dependencies::Stats]
+ - Dependencies changed since 0.001000, see misc/*.deps* for details
+ - test: ↑1
 
 0.001000 2016-02-24T15:13:45Z 55ebf9f
  - First version.

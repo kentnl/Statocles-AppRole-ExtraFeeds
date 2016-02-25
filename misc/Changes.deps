@@ -1,3 +1,5 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
 0.001001
+ [Changed / test requires]
+ - Beam::Wire 0 → 1.016
