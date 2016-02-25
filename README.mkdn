@@ -10,11 +10,6 @@ version 0.001001
 
 This module is very new and it comes with the following present caveats:
 
-- Usage as stated in description does not yet work
-
-    You'll need to locally patch `Beam::Wire` as per [https://github.com/preaction/Beam-Wire/pull/59](https://github.com/preaction/Beam-Wire/pull/59)
-    in order to get roles applying with attributes respected.
-
 - Application outside `Statocles::App::Blog` untested.
 
     Feedback welcome though, and it might work by magic!
