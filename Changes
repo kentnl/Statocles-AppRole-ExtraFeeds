@@ -1,6 +1,6 @@
 Release history for Statocles-AppRole-ExtraFeeds
 
-0.001001 2016-02-25T00:34:07Z a3aedb8
+0.001001 2016-02-25T00:34:57Z 57745c3
  - Bump version on Beam::Wire for interop with Beam::Wire 'with' mechanics.
 
  [Dependencies::Stats]
