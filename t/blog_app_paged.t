@@ -7,7 +7,7 @@ use Scalar::Util    ('blessed');
 use Data::Dump      ('pp');
 use Term::ANSIColor ('colored');
 use Path::Tiny      ( 'path', 'tempdir' );
-use Statocles::Test ( 'build_test_site', 'test_pages' );
+use Statocles::Test ('build_test_site');
 
 use Beam::Wire                     ();
 use Statocles::App::Blog           ();

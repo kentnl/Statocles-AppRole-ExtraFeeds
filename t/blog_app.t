@@ -7,7 +7,7 @@ use Scalar::Util    ('blessed');
 use Data::Dump      ('pp');
 use Term::ANSIColor ('colored');
 use Path::Tiny      ( 'path', 'tempdir' );
-use Statocles::Test ( 'build_test_site', 'test_pages' );
+use Statocles::Test ('build_test_site');
 
 use Test::Deep ();    # statocles needs this installed, but something can fubar in deps
                       # on travis leading to a "no Test::Deep" ... somehow. IDK
