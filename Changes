@@ -1,5 +1,7 @@
 Release history for Statocles-AppRole-ExtraFeeds
 
+0.001003 2016-02-26T06:53:04Z f6092ca
+
 0.001002 2016-02-26T06:52:21Z 8cbb246
  - Remove unused import in tests that will break in a future Statocles release
 
