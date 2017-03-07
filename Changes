@@ -1,5 +1,7 @@
 Release history for Statocles-AppRole-ExtraFeeds
 
+0.001004 2017-03-07T09:19:21Z b81292b
+
 0.001003 2017-03-07T09:17:28Z a29ca76
  - Bugfix: Avoid test failures with -Ddefault_inc_excludes_dot
  - Bugfix: Port tests to Statocles 0.75 changes

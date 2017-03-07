@@ -1,6 +1,8 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
-0.001003
+0.001004
+
+0.001003 2017-03-07T09:17:28Z
  [Changed / test requires]
  - Statocles::Test 0 → 0.075
  - Test::More 0.89 → 0
