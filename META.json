@@ -128,7 +128,7 @@
             "Path::Tiny" : "0",
             "Scalar::Util" : "0",
             "Statocles::App::Blog" : "0",
-            "Statocles::Test" : "0",
+            "Statocles::Test" : "0.075",
             "Term::ANSIColor" : "0",
             "Test::Deep" : "0",
             "Test::More" : "0",
@@ -882,11 +882,11 @@
             "class" : "Dist::Zilla::Plugin::Prereqs",
             "config" : {
                "Dist::Zilla::Plugin::Prereqs" : {
-                  "phase" : "runtime",
+                  "phase" : "test",
                   "type" : "requires"
                }
             },
-            "name" : "Prereqs",
+            "name" : "TestRequires",
             "version" : "6.009"
          },
          {

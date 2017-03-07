@@ -12,7 +12,7 @@ build_requires:
   Path::Tiny: '0'
   Scalar::Util: '0'
   Statocles::App::Blog: '0'
-  Statocles::Test: '0'
+  Statocles::Test: '0.075'
   Term::ANSIColor: '0'
   Test::Deep: '0'
   Test::More: '0'
