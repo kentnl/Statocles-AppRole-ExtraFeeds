@@ -2,6 +2,7 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
 
 0.001003
  [Changed / test requires]
+ - Statocles::Test 0 → 0.075
  - Test::More 0.89 → 0
 
 0.001002 2016-02-26T06:52:21Z

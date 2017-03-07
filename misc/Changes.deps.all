@@ -12,6 +12,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.025010 → 2.025021
 
  [Changed / test requires]
+ - Statocles::Test 0 → 0.075
  - Test::More 0.89 → 0
 
 0.001002 2016-02-26T06:52:21Z
