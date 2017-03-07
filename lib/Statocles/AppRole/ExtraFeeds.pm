@@ -4,7 +4,7 @@ use warnings;
 
 package Statocles::AppRole::ExtraFeeds;
 
-our $VERSION = '0.001003';
+our $VERSION = '0.001004';
 
 # ABSTRACT: Generate additional feed sets for apps
 
