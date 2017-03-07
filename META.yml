@@ -15,7 +15,7 @@ build_requires:
   Statocles::Test: '0'
   Term::ANSIColor: '0'
   Test::Deep: '0'
-  Test::More: '0.89'
+  Test::More: '0'
   constant: '1.03'
   lib: '0'
   perl: '5.006'
@@ -25,7 +25,7 @@ configure_requires:
   Module::Metadata: '0'
   perl: '5.006'
 dynamic_config: 1
-generated_by: 'Dist::Zilla version 5.043, CPAN::Meta::Converter version 2.150005'
+generated_by: 'Dist::Zilla version 6.009, CPAN::Meta::Converter version 2.150010'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
