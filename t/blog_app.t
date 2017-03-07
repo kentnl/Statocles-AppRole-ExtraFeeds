@@ -23,6 +23,7 @@ use KENTNL::Utils ( 'symdump', 'has_feeds' );
 my $wd = tempdir();
 $wd->child('theme/blog')->mkpath;
 $wd->child('theme/site')->mkpath;
+$wd->child('theme/layout')->mkpath;
 $wd->child('blog/2014/04/02')->mkpath;
 $wd->child('blog/2014/04/02/a.markdown')->spew_raw(<<'BLOG_A');
 ---
@@ -41,7 +42,7 @@ $wd->child('theme/blog/post.html.ep')->spew_raw('');
 $wd->child('theme/blog/index.atom.ep')->spew_raw('');
 $wd->child('theme/blog/index.rss.ep')->spew_raw('');
 $wd->child('theme/blog/fulltext.rss.ep')->spew_raw('');
-$wd->child('theme/site/layout.html.ep')->spew_raw(<<'EOF');
+$wd->child('theme/layout/default.html.ep')->spew_raw(<<'EOF');
 title: <%= $self->title %>
 site_title: <%= $site->title %>
 links:
